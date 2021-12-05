@@ -37,9 +37,4 @@ public class HelloController {
 
         return new ResponseEntity<>(retObj, HttpStatus.OK);
     }
-
-    @GetMapping("/greeting")
-    public ResponseEntity<String> sayHello() throws Exception {
-        return new ResponseEntity<>("Hello!!!", HttpStatus.OK);
-    }
 }
