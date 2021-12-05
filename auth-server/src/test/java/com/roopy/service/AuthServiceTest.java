@@ -1,8 +1,9 @@
 package com.roopy.service;
 
 import com.roopy.AuthServerApplication;
-import com.roopy.security.jwt.payload.request.LoginRequest;
-import com.roopy.security.jwt.payload.response.TokenResponse;
+import com.roopy.auth.security.jwt.payload.request.LoginRequest;
+import com.roopy.auth.security.jwt.payload.response.TokenResponse;
+import com.roopy.auth.service.AuthService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
