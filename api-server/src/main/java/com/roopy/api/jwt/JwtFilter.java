@@ -1,5 +1,6 @@
 package com.roopy.api.jwt;
 
+import com.roopy.api.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -71,6 +72,7 @@ public class JwtFilter extends OncePerRequestFilter {
             // 유효한 경우 accessToken 을 재발급 처리 한다.
             if (!isValidAccessToken) {
                 String username = httpServletRequest.getHeader("username");
+                logger.debug("uername({})", username);
 
                 String refreshToken = null;
 
@@ -135,9 +137,10 @@ public class JwtFilter extends OncePerRequestFilter {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<String> request = new HttpEntity<>(username, headers);
-        ResponseEntity<String> responseEntity = restTemplate.postForEntity( "http://localhost:10001/user/" + username, request , String.class);
+        ResponseEntity<UserDto> responseEntity = restTemplate.postForEntity( "http://localhost:10001/user/" + username, request , UserDto.class);
+        logger.debug("responseEntity: {}", responseEntity);
 
-        refreshToken = responseEntity.getBody();
+        refreshToken = responseEntity.getBody().getUid();
 
         return refreshToken;
     }
